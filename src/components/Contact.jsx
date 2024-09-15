@@ -58,19 +58,19 @@ const Contact = () => {
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://instagram.com/yourusername",
+      url: "https://www.instagram.com/s_elmaghraoui/",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      url: "https://facebook.com/yourusername",
+      url: "https://www.facebook.com/elmaghraoui.soufiane",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://www.linkedin.com/in/soufiane-el-maghraoui/",
     },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/yourusername" },
+    { name: "Twitter", icon: Twitter, url: "https://x.com/soufianeelmag11" },
   ];
 
   return (
