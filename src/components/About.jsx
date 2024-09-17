@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <>
+    <div className="" style={{ width: "600px" }}>
       <h1>Hi there,</h1>
       <br />
       <br />
@@ -14,9 +14,9 @@ const About = () => {
       education, history, economics and politics.
       <br />
       <br />
-      Type "cd projetcs" then "ls" to see details of the projects I have
-      developed over my years of coding experience.
-    </>
+      Type "cd projetcs" to see details of the projects I have developed over my
+      years of coding experience.
+    </div>
   );
 };
 

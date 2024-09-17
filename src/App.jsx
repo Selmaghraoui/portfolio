@@ -1,26 +1,45 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./App.css";
 import Cmd from "./components/Cmd";
-import Header from "./components/Header";
 import Help from "./components/Help";
 import Contact from "./components/Contact";
 import FileExplorer from "./components/FileExplorer";
 import Notepad from "./components/Notepad";
 import AppContext from "./components/AppContext.ts";
-import DraggableCard from "./drag/DragAndDrop.jsx";
-import SecondDraggableCard from "./drag/SecondDraggableCard.jsx";
-import Card from "./drag/Card.jsx";
+import Draggable from "react-draggable";
 
 function App() {
   const [commands, setCommands] = useState([
-    "Hello ! Try to use the command prompt to knwo more about me.",
+    "Hello ! Try to use the command prompt to know more about me.",
     "Type 'help' to get started.",
   ]);
   const [currentCommand, setCurrentCommand] = useState("");
   const [currentRepo, setCurrentRepo] = useState(`user: ~$`);
   const [enteredCommand, setEnteredCommand] = useState();
 
-  // return <Card />;
+  const [bounds, setBounds] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    const updateBounds = () => {
+      const maxWidth = window.innerWidth * 0.66;
+      const maxHeight = window.innerHeight;
+      setBounds({
+        width: maxWidth,
+        height: maxHeight,
+      });
+    };
+
+    updateBounds();
+    window.addEventListener("resize", updateBounds);
+
+    return () => {
+      window.removeEventListener("resize", updateBounds);
+    };
+  }, []);
 
   return (
     <AppContext.Provider
@@ -37,38 +56,99 @@ function App() {
     >
       <header
         className="App-header"
-        style={{ display: "flex", flexDirection: "row" }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          height: "100vh",
+        }}
       >
         <div
           style={{
             width: "66%",
-            padding: "24px",
+            height: "100vh",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {currentCommand === "show about.md" ? (
-            <Notepad fileName={"about"} />
-          ) : currentCommand === "show resume.md" ? (
-            <Notepad fileName={"resume"} />
-          ) : currentCommand === "execute contact" ? (
-            <Contact />
-          ) : // ------------- educations -------------
-          currentCommand === "cd educations" ? (
-            <FileExplorer fileName={"educations"} />
-          ) : currentCommand === "cd .." &&
-            currentRepo === "user: / educations ~$" ? (
-            <FileExplorer fileName={"home"} />
-          ) : // ------------- projects -------------
-          currentCommand === "cd projects" ? (
-            <FileExplorer fileName={"projects"} />
-          ) : currentCommand === "cd .." &&
-            currentRepo === "user: / projects ~$" ? (
-            <FileExplorer fileName={"home"} />
-          ) : // ------------- help -------------
-          currentCommand === "help" ? (
-            <Help />
-          ) : (
-            <Header />
-          )}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              padding: "20px",
+            }}
+          >
+            <h1>Hi there, </h1>
+            <div>
+              I'm El Maghraoui Soufiane, Full Stack Web Developer. Welcome to my
+              portfolio.
+            </div>
+          </div>
+
+          <Draggable bounds="parent">
+            <div
+              style={{
+                position: "absolute",
+              }}
+            >
+              {currentCommand === "cd educations" ? (
+                <FileExplorer fileName={"educations"} />
+              ) : currentCommand === "cd .." &&
+                currentRepo === "user: / educations ~$" ? (
+                <FileExplorer fileName={"home"} />
+              ) : currentCommand === "cd projects" ? (
+                <FileExplorer fileName={"projects"} />
+              ) : currentCommand === "cd .." &&
+                currentRepo === "user: / projects ~$" ? (
+                <FileExplorer fileName={"home"} />
+              ) : currentCommand === "help" ? (
+                <Help />
+              ) : (
+                <FileExplorer fileName={"home"} />
+              )}
+            </div>
+          </Draggable>
+
+          {currentCommand === "show about.md" ||
+          currentCommand === "show resume.md" ||
+          currentCommand === "execute contact" ? (
+            <Draggable bounds="parent">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "absolute",
+                }}
+              >
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 25,
+                    }}
+                  >
+                    {currentCommand === "show about.md" ? (
+                      <Notepad fileName={"about"} />
+                    ) : currentCommand === "show resume.md" ? (
+                      <Notepad fileName={"resume"} />
+                    ) : currentCommand === "execute contact" ? (
+                      <Contact />
+                    ) : (
+                      <></>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </Draggable>
+          ) : null}
         </div>
 
         <div style={{ width: "34%" }}>
@@ -77,71 +157,6 @@ function App() {
       </header>
     </AppContext.Provider>
   );
-
-  // const [bounds, setBounds] = useState({
-  //   card1: { left: 0, top: 0, right: 0, bottom: 0 },
-  //   card2: { left: 0, top: 0, right: 0, bottom: 0 },
-  // });
-
-  // const [activeCard, setActiveCard] = useState(null); // Track the active card
-
-  // useEffect(() => {
-  //   const updateBounds = () => {
-  //     const card1Width = 300;
-  //     const card1Height = 200;
-  //     const card2Width = 250;
-  //     const card2Height = 150;
-
-  //     setBounds({
-  //       card1: {
-  //         left: 0,
-  //         top: 0,
-  //         right: window.innerWidth - card1Width,
-  //         bottom: window.innerHeight - card1Height,
-  //       },
-  //       card2: {
-  //         left: 0,
-  //         top: 0,
-  //         right: window.innerWidth - card2Width,
-  //         bottom: window.innerHeight - card2Height,
-  //       },
-  //     });
-  //   };
-
-  //   updateBounds();
-  //   window.addEventListener("resize", updateBounds);
-
-  //   return () => {
-  //     window.removeEventListener("resize", updateBounds);
-  //   };
-  // }, []);
-
-  // // Function to handle dragging start and set the active card
-  // const handleDragStart = (card) => {
-  //   setActiveCard(card);
-  // };
-
-  // return (
-  //   <div
-  //     style={{
-  //       width: "100vw",
-  //       height: "100vh",
-  //       position: "relative",
-  //       overflow: "hidden",
-  //     }}
-  //   >
-  //     <DraggableCard
-  //       bounds={bounds.card1}
-  //       zIndex={activeCard === "card1" ? 2 : 1} // Set zIndex based on active card
-  //       onStart={() => handleDragStart("card1")}
-  //     />
-  //     <SecondDraggableCard
-  //       bounds={bounds.card2}
-  //       zIndex={activeCard === "card2" ? 2 : 1} // Set zIndex based on active card
-  //       onStart={() => handleDragStart("card2")}
-  //     />
-  //   </div>
-  // );
 }
 
 export default App;

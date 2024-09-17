@@ -22,21 +22,34 @@ const FileExplorer = (props) => {
   };
 
   return (
-    <div className="w-full mx-auto bg-gray-100 rounded-lg shadow-md border overflow-hidden">
+    <div
+      className=" mx-auto bg-gray-100 rounded-lg shadow-md border overflow-hidden"
+      style={{
+        minWidth: "900px",
+      }}
+    >
       <div className="bg-[#f3f3f3] p-2 flex items-center justify-between border-b border-gray-300">
         <div className="flex items-center space-x-2">
           <Folder size={20} className="text-yellow-500" />
           <span className="text-sm font-semibold">Folder</span>
         </div>
         <div className="flex items-center space-x-2">
-          {/* <button className="p-1 hover:bg-gray-200 rounded"> */}
-          <button className="p-1 hover:bg-gray-200 rounded text-gray-400" disabled={true}>
+          <button
+            className="p-1 hover:bg-gray-200 rounded text-gray-400"
+            disabled={true}
+          >
             <Minus size={16} />
           </button>
-          <button className="p-1 hover:bg-gray-200 rounded text-gray-400" disabled={true}>
+          <button
+            className="p-1 hover:bg-gray-200 rounded text-gray-400"
+            disabled={true}
+          >
             <Square size={16} />
           </button>
-          <button className="p-1 hover:bg-gray-200 rounded text-gray-400" disabled={true}>
+          <button
+            className="p-1 hover:bg-gray-200 rounded text-gray-400"
+            disabled={true}
+          >
             <X size={16} />
           </button>
         </div>
@@ -73,7 +86,6 @@ const FileExplorer = (props) => {
         ) : (
           <></>
         )}
-        {/* <Home /> */}
       </div>
     </div>
   );

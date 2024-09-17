@@ -15,10 +15,8 @@ const Cmd = () => {
   } = useContext(AppContext);
 
   const handleKeyDown = (e) => {
-    // setEnteredCommand(e.target.value);
     const enteredCommand = e.target.value;
     if (e.keyCode === 13) {
-      // Update current command and commands list
       setCommands([...commands, `${currentRepo} ${enteredCommand}`]);
 
       // about
@@ -100,7 +98,6 @@ const Cmd = () => {
         ]);
       }
 
-      // Clear input after submitting the command
       e.target.value = "";
     }
   };

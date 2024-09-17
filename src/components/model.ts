@@ -9,6 +9,5 @@ export enum FILE {
 export enum ICON {
   FOLDER = "folder",
   APP = "app",
-  // LAYOUT_PANEL_LEFT = "LayoutPanelLeft",
   DOCUMENT = "document",
 }

@@ -3,6 +3,7 @@ import Resume from "./Resume";
 import About from "./About";
 import { useContext } from "react";
 import AppContext from "./AppContext.ts";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Notepad = (props) => {
   const {
@@ -26,12 +27,6 @@ const Notepad = (props) => {
         <div className="bg-gray-200 p-2 flex justify-between items-center">
           <div className="text-sm font-semibold text-gray-700">Notepad</div>
           <div className="flex space-x-2">
-            {/* <button className="p-1 hover:bg-gray-300 rounded-md">
-              <Minus className="h-4 w-4 text-gray-700" />
-            </button>
-            <button className="p-1 hover:bg-gray-300 rounded-md">
-              <Maximize2 className="h-4 w-4 text-gray-700" />
-            </button> */}
             <button
               className="p-1 hover:bg-red-500 rounded-md group"
               onClick={close}

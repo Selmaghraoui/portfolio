@@ -44,9 +44,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    // Reset form after submission
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -74,18 +71,15 @@ const Contact = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className="flex items-center justify-center"
+      style={{ width: "600px" }}
+    >
       <div className="w-full max-w-2xl bg-white rounded-lg shadow-md border overflow-hidden flex flex-col">
         {/* Top bar */}
         <div className="bg-gray-200 p-2 flex justify-between items-center">
           <div className="text-sm font-semibold text-gray-700">Contact</div>
           <div className="flex space-x-2">
-            {/* <button className="p-1 hover:bg-gray-300 rounded-md">
-              <Minus className="h-4 w-4 text-gray-700" />
-            </button>
-            <button className="p-1 hover:bg-gray-300 rounded-md">
-              <Maximize2 className="h-4 w-4 text-gray-700" />
-            </button> */}
             <button
               className="p-1 hover:bg-red-500 rounded-md group"
               onClick={close}

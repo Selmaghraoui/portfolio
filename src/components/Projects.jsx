@@ -17,28 +17,28 @@ const Projects = () => {
       title: "System Ticket Management",
       image: "tickets.png",
       tags: ["Angular", "Tailwind", "Spring Boot"],
-      url: "https://rct.squarehabitat.fr/",
+      url: "https://github.com/Selmaghraoui/helpdesk-front",
     },
     {
       id: 3,
       title: "Portfolio Website",
       image: "portfolio.png",
       tags: ["React Js", "Tailwind CSS"],
-      url: "https://rct.squarehabitat.fr/",
+      url: "https://soufiane-el-maghraoui.surge.sh",
     },
     {
       id: 4,
       title: "Weather Website",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "",
       tags: ["React Js", "Node Js"],
-      url: "https://rct.squarehabitat.fr/",
+      // url: "",
     },
     {
       id: 5,
       title: "Intranet Website",
       image: "intranetappangular.png",
       tags: ["Angular", "Bootstrap"],
-      url: "https://rct.squarehabitat.fr/",
+      url: "https://github.com/Selmaghraoui/GLINTRANET-FE",
     },
   ];
 
@@ -55,25 +55,20 @@ const Projects = () => {
           onHoverStart={() => setHoveredId(project.id)}
           onHoverEnd={() => setHoveredId(null)}
         >
-          {/* Image with Blur Effect on Hover */}
           <motion.img
             src={`${process.env.PUBLIC_URL}/assets/${project.image}`}
             className="w-full h-64 object-cover transition-transform duration-300 ease-in-out"
             animate={{
               filter: hoveredId === project.id ? "blur(4px)" : "blur(0px)",
             }}
-            // alt={project.title}
           />
 
-          {/* Always Visible Dark Gradient at Bottom 20% */}
           <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
-          {/* Title Positioned at the Bottom */}
           <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
             <h3 className="text-lg font-bold text-white">{project.title}</h3>
           </div>
 
-          {/* Tags Positioned at the Top (Visible Only on Hover) */}
           <motion.div
             className="absolute top-0 left-0 right-0 p-4 flex justify-start gap-2"
             initial={{ opacity: 0, y: -20 }}
@@ -93,7 +88,6 @@ const Projects = () => {
             ))}
           </motion.div>
 
-          {/* View Project Button (Appear on Hover) */}
           <motion.div
             className="absolute inset-0 bg-opacity-75 flex items-center justify-center"
             initial={{ opacity: 0 }}

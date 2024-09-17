@@ -20,14 +20,13 @@ const Help = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center bg-white" style={{ width: "800px" }}>
       <div className="w-full p-6 rounded-lg shadow-md border max-w-4xl">
         <h2 className="text-2xl font-bold mb-4 flex items-center">
           <Terminal className="mr-2" />
           Command Help
         </h2>
         <p className="mb-4 text-sm">
-          {/* For more information on a specific command, type HELP command-name */}
         </p>
         <div className="space-y-3">
           {commands.map((cmd) => (
@@ -38,7 +37,8 @@ const Help = () => {
               <cmd.icon className="mr-3 text-blue-400" />
               <div>
                 <p className="font-mono text-sm">
-                  <span className="text-green-400">$</span> {cmd.name}
+                  <span className="text-green-400">$</span>
+                  <span className="text-black hover:text-white transition-colors">{cmd.name}</span>
                 </p>
                 <p className="text-xs text-gray-400">{cmd.description}</p>
               </div>

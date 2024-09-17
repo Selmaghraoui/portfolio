@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Steps to deploy project on surge.sh
+
+0. make sure [package.json] file conataine the property : "homepage": "https://soufiane-el-maghraoui.surge.sh", 
+1. run `npm run build`
+2. run `cd build`
+3. run `surge`
+4. modify the domaine onto `soufiane-el-maghraoui.surge.sh`
+4. test with domaine modified 
